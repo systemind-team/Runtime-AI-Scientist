@@ -1,0 +1,728 @@
+{
+  "schema_version": 1,
+  "batch": "discovery-20260924-three-tasks-n0",
+  "scope": {
+    "condition": "N0",
+    "hosts": [
+      "evo_scientist",
+      "agent_laboratory"
+    ],
+    "tasks": [
+      "nls_ses/metadata_0/0/0",
+      "worldbank_education_gdp/metadata_0/0/0",
+      "requirements_engineering_for_ML_enabled_systems/metadata_0/0/0"
+    ],
+    "seed": 0,
+    "repeat": 0,
+    "planned_episodes": 6,
+    "host_exited_episodes": 6,
+    "original_numeric_scores": 4,
+    "original_invalid_submissions": 2,
+    "supplemental_scored_episodes": 2
+  },
+  "accounting": {
+    "calls": "Gateway attempts, including failed requests and host subagents; judge calls are separate.",
+    "reported_tokens": "Sum of successful response usage only; unknown failed-request usage is null in per-request records.",
+    "budget_tokens": "Successful response usage plus conservative reservations retained for failed requests.",
+    "conservative_cost_usd": "Local estimate at USD2/million input and USD4/million output tokens, with cached input charged as uncached; includes failed reservations, excludes judge. Recomputed to six decimal places from budget token counts and checked against gateway estimates within 1e-9 USD. Not an Azure bill.",
+    "elapsed_seconds": "Controller finish minus start, including setup and scoring. Concurrent episode durations must not be summed as batch wall time.",
+    "score_handling": "Original invalid submissions remain null. Supplemental scores are distinct scoring attempts after copying existing output bytes to the expected location; hosts were not rerun.",
+    "limitations": "One seed per task/host/condition. These observations do not establish a performance gain, replication, or statistical significance."
+  },
+  "totals": {
+    "calls": 625,
+    "response_calls": 623,
+    "failed_calls": 2,
+    "reported_input_tokens": 15694028,
+    "reported_output_tokens": 726052,
+    "budget_input_tokens": 15941812,
+    "budget_output_tokens": 857124,
+    "conservative_cost_usd": 35.31212
+  },
+  "judge_usage_totals": {
+    "original_scoring": {
+      "calls": 28,
+      "input_tokens": 66706,
+      "output_tokens": 5338
+    },
+    "supplemental_scoring": {
+      "calls": 11,
+      "input_tokens": 38200,
+      "output_tokens": 1258
+    }
+  },
+  "episodes": [
+    {
+      "episode_id": "discovery_pilot_20260924__discoverybench__test__nls_ses_metadata_0_0_0_8c801142__evo_scientist__N0__s0__r0__a423c2281",
+      "task_id": "nls_ses/metadata_0/0/0",
+      "host": "evo_scientist",
+      "condition": "N0",
+      "seed": 0,
+      "model": "DeepSeek-V4-Pro",
+      "execution_mode": "host_native",
+      "benchmark_id": "discoverybench",
+      "split": "test",
+      "profile": "real-no-domain-knowledge",
+      "status": "completed",
+      "reason": "EvoScientist native rubric-guided deep-agent run completed",
+      "submission_status": "valid",
+      "scoring_status": "scored",
+      "hops": 0,
+      "repeat": 0,
+      "host_exit_code": 0,
+      "started_at_utc": "2026-09-24T18:10:49.760176+00:00",
+      "finished_at_utc": "2026-09-24T18:17:58.368490+00:00",
+      "elapsed_seconds_including_setup_and_scoring": 428.60831356048584,
+      "configured_budget": {
+        "provider_cost_usd": 40.0,
+        "input_tokens": 60000000,
+        "output_tokens": 1300000,
+        "agent_calls": 900,
+        "wall_seconds": 21600.0,
+        "hops": 8
+      },
+      "gateway_usage": {
+        "calls": 35,
+        "response_calls": 35,
+        "failed_calls": 0,
+        "reported_input_tokens": 1024649,
+        "reported_output_tokens": 21585,
+        "budget_input_tokens": 1024649,
+        "budget_output_tokens": 21585,
+        "conservative_cost_usd": 2.135638
+      },
+      "original_scoring": {
+        "scorer_exit_code": 0,
+        "status": "scored",
+        "total_score": 0.0,
+        "error": null,
+        "metrics": {
+          "recall_context": 1.0,
+          "mean_accuracy_score": 0.0,
+          "final_score": 0.0
+        },
+        "provenance": {
+          "source_revision": "c31fcf011e070f021a5f5b906896d0821f6880e8",
+          "scorer_source_sha256": "83406ddbe6894429cc5012b17cb82a209d5397aa7863b0aba1bb51edf1dd6c65",
+          "submission_sha256": "838dc08fd053dae1598e4d3bcdcd5e3972e06dbe51bbacf544ec39fe092ae9e2",
+          "split": "test",
+          "profile": "real-no-domain-knowledge",
+          "wall_seconds": 18.13660469299998,
+          "judge_provider": "azure",
+          "judge_model": "gpt-5.4",
+          "judge_usage": {
+            "calls": 5,
+            "input_tokens": 5582,
+            "output_tokens": 884
+          }
+        }
+      },
+      "supplemental_scoring": null,
+      "provenance": {
+        "run_config_sha256": "3d371c7cdab67d3d248e18c30d07f44e6fdeea4dcd8520a2b8e185e531442adc",
+        "workspace_input_sha256": "ba72df67b3566c973317949f0e256a00570f3356ae0ce0b52cb37f1a02d76e42",
+        "manifest_sha256": "b59586dc4e1dfb541b573a3dbf773c38fd8262e0ffffcde821d5a67efde54d52",
+        "benchmark_revision": "c31fcf011e070f021a5f5b906896d0821f6880e8",
+        "task_spec_sha256": "ddc13f90437dc3b5d2a39ec75efa35afc969807900d4d1f8c2cc00315282bc02",
+        "integration_tree_sha256": "25486ace46d0768ecbe699b01ef6c94052b149ef946da070687242e9c489af71",
+        "upstream": {
+          "revision": "418abca4f40a4080604834536342492dfd8bdf3e",
+          "expected_tree_sha256": "0fd8cfb5fd2c987d7d95090546497db848dca0b9229c66e077c18b3c90e8b82c",
+          "actual_tree_sha256": "0fd8cfb5fd2c987d7d95090546497db848dca0b9229c66e077c18b3c90e8b82c",
+          "file_count": 296,
+          "byte_count": 4418760
+        },
+        "task_runtime": {
+          "kind": "docker",
+          "image_id": "sha256:7253e3ee9ce1e9c5bdf778f63c1fb7f40a4a7b9f042eb5265dcfc9f25e3122a2",
+          "memory": "3g",
+          "cpus": 3,
+          "initial_python_packages": [
+            [
+              "pip",
+              "24.0"
+            ],
+            [
+              "setuptools",
+              "79.0.1"
+            ]
+          ],
+          "bootstrap_only": true,
+          "execution_protocol": "synchronous-bash-v1",
+          "task_spec_sha256": "b27b27c059fc9764e0e362a21f6a916171a33fe712cdc4d0428b4677ba31e1c3",
+          "lifecycle_wall_seconds": 21600.0
+        }
+      },
+      "output_artifact": {
+        "path": "workspace/discovery_result.json",
+        "sha256": "2aafa390caa24621f42f12a75d7032acbd812ad4ac6a9d198acad2e4c172053b"
+      }
+    },
+    {
+      "episode_id": "discovery_pilot_20260924__discoverybench__test__worldbank_education_gdp_metadata_0_0_0_b0266dce__evo_scientist__N0__s0__r0__a423c2281",
+      "task_id": "worldbank_education_gdp/metadata_0/0/0",
+      "host": "evo_scientist",
+      "condition": "N0",
+      "seed": 0,
+      "model": "DeepSeek-V4-Pro",
+      "execution_mode": "host_native",
+      "benchmark_id": "discoverybench",
+      "split": "test",
+      "profile": "real-no-domain-knowledge",
+      "status": "completed",
+      "reason": "EvoScientist native rubric-guided deep-agent run completed",
+      "submission_status": "valid",
+      "scoring_status": "scored",
+      "hops": 0,
+      "repeat": 0,
+      "host_exit_code": 0,
+      "started_at_utc": "2026-09-24T19:02:33.315658+00:00",
+      "finished_at_utc": "2026-09-24T19:13:33.670022+00:00",
+      "elapsed_seconds_including_setup_and_scoring": 660.3543632030487,
+      "configured_budget": {
+        "provider_cost_usd": 40.0,
+        "input_tokens": 60000000,
+        "output_tokens": 1300000,
+        "agent_calls": 900,
+        "wall_seconds": 21600.0,
+        "hops": 8
+      },
+      "gateway_usage": {
+        "calls": 41,
+        "response_calls": 41,
+        "failed_calls": 0,
+        "reported_input_tokens": 1444377,
+        "reported_output_tokens": 18140,
+        "budget_input_tokens": 1444377,
+        "budget_output_tokens": 18140,
+        "conservative_cost_usd": 2.961314
+      },
+      "original_scoring": {
+        "scorer_exit_code": 0,
+        "status": "scored",
+        "total_score": 0.0,
+        "error": null,
+        "metrics": {
+          "recall_context": 1.0,
+          "mean_accuracy_score": 0.0,
+          "final_score": 0.0
+        },
+        "provenance": {
+          "source_revision": "c31fcf011e070f021a5f5b906896d0821f6880e8",
+          "scorer_source_sha256": "83406ddbe6894429cc5012b17cb82a209d5397aa7863b0aba1bb51edf1dd6c65",
+          "submission_sha256": "86bdd11c02d39cf95e529759747ec5a061eb1ce47554b40334014e143edd9a67",
+          "split": "test",
+          "profile": "real-no-domain-knowledge",
+          "wall_seconds": 41.59057037599996,
+          "judge_provider": "azure",
+          "judge_model": "gpt-5.4",
+          "judge_usage": {
+            "calls": 10,
+            "input_tokens": 13471,
+            "output_tokens": 2691
+          }
+        }
+      },
+      "supplemental_scoring": null,
+      "provenance": {
+        "run_config_sha256": "712d7350e5da76c13f2e47fb569f4971dcc3e62aebdb0d0656616e6c4172de71",
+        "workspace_input_sha256": "442d91c711d32e49773b64a1b62f010479034f3750bf2aec290e6866236e2ff4",
+        "manifest_sha256": "b59586dc4e1dfb541b573a3dbf773c38fd8262e0ffffcde821d5a67efde54d52",
+        "benchmark_revision": "c31fcf011e070f021a5f5b906896d0821f6880e8",
+        "task_spec_sha256": "d19cdc65acb8b111339bbd47dc416a01672785df80d889d89e340b1c44f82ffb",
+        "integration_tree_sha256": "25486ace46d0768ecbe699b01ef6c94052b149ef946da070687242e9c489af71",
+        "upstream": {
+          "revision": "418abca4f40a4080604834536342492dfd8bdf3e",
+          "expected_tree_sha256": "0fd8cfb5fd2c987d7d95090546497db848dca0b9229c66e077c18b3c90e8b82c",
+          "actual_tree_sha256": "0fd8cfb5fd2c987d7d95090546497db848dca0b9229c66e077c18b3c90e8b82c",
+          "file_count": 296,
+          "byte_count": 4418760
+        },
+        "task_runtime": {
+          "kind": "docker",
+          "image_id": "sha256:7253e3ee9ce1e9c5bdf778f63c1fb7f40a4a7b9f042eb5265dcfc9f25e3122a2",
+          "memory": "3g",
+          "cpus": 3,
+          "initial_python_packages": [
+            [
+              "pip",
+              "24.0"
+            ],
+            [
+              "setuptools",
+              "79.0.1"
+            ]
+          ],
+          "bootstrap_only": true,
+          "execution_protocol": "synchronous-bash-v1",
+          "task_spec_sha256": "4d29061b521fc749f86711ee2175f610bb5d9720ea9e10f1485f1723bcaff6be",
+          "lifecycle_wall_seconds": 21600.0
+        }
+      },
+      "output_artifact": {
+        "path": "workspace/discovery_result.json",
+        "sha256": "c4053ef5ee2ab9703d87c92f1fc0e51aa6db660561c6b18c19ce8d0d71f1e589"
+      }
+    },
+    {
+      "episode_id": "discovery_pilot_20260924__discoverybench__test__requirements_engineering_for_ML_enabled_systems_metadata_0_0_0_c2d22a93__evo_scientist__N0__s0__r0__a423c2281",
+      "task_id": "requirements_engineering_for_ML_enabled_systems/metadata_0/0/0",
+      "host": "evo_scientist",
+      "condition": "N0",
+      "seed": 0,
+      "model": "DeepSeek-V4-Pro",
+      "execution_mode": "host_native",
+      "benchmark_id": "discoverybench",
+      "split": "test",
+      "profile": "real-no-domain-knowledge",
+      "status": "completed",
+      "reason": "EvoScientist native rubric-guided deep-agent run completed",
+      "submission_status": "valid",
+      "scoring_status": "scored",
+      "hops": 0,
+      "repeat": 0,
+      "host_exit_code": 0,
+      "started_at_utc": "2026-09-24T20:28:33.968251+00:00",
+      "finished_at_utc": "2026-09-24T20:43:31.903913+00:00",
+      "elapsed_seconds_including_setup_and_scoring": 897.9356622695923,
+      "configured_budget": {
+        "provider_cost_usd": 40.0,
+        "input_tokens": 60000000,
+        "output_tokens": 1300000,
+        "agent_calls": 900,
+        "wall_seconds": 21600.0,
+        "hops": 8
+      },
+      "gateway_usage": {
+        "calls": 55,
+        "response_calls": 55,
+        "failed_calls": 0,
+        "reported_input_tokens": 3398734,
+        "reported_output_tokens": 32669,
+        "budget_input_tokens": 3398734,
+        "budget_output_tokens": 32669,
+        "conservative_cost_usd": 6.928144
+      },
+      "original_scoring": {
+        "scorer_exit_code": 0,
+        "status": "scored",
+        "total_score": 0.6666666666666666,
+        "error": null,
+        "metrics": {
+          "recall_context": 1.0,
+          "mean_accuracy_score": 0.6666666666666666,
+          "final_score": 0.6666666666666666
+        },
+        "provenance": {
+          "source_revision": "c31fcf011e070f021a5f5b906896d0821f6880e8",
+          "scorer_source_sha256": "83406ddbe6894429cc5012b17cb82a209d5397aa7863b0aba1bb51edf1dd6c65",
+          "submission_sha256": "631e781b4cea3e6347dce472d4bc3b4020bd1592fd8f0fc929ad7cf1bb4e368b",
+          "split": "test",
+          "profile": "real-no-domain-knowledge",
+          "wall_seconds": 15.522186895999766,
+          "judge_provider": "azure",
+          "judge_model": "gpt-5.4",
+          "judge_usage": {
+            "calls": 5,
+            "input_tokens": 35555,
+            "output_tokens": 550
+          }
+        }
+      },
+      "supplemental_scoring": null,
+      "provenance": {
+        "run_config_sha256": "7f20f30b984a22910feb53b912f11e8c55a4c3bfebc601e6a62440e4165c912a",
+        "workspace_input_sha256": "5fa1c302fee64b349f363d351271e27bffcf3c6c31f7c880df72cb99941ab42f",
+        "manifest_sha256": "b59586dc4e1dfb541b573a3dbf773c38fd8262e0ffffcde821d5a67efde54d52",
+        "benchmark_revision": "c31fcf011e070f021a5f5b906896d0821f6880e8",
+        "task_spec_sha256": "07fff0852e3b055d7623416448f1b2d216de63d77e39f4f7d16b16058b8e8716",
+        "integration_tree_sha256": "25486ace46d0768ecbe699b01ef6c94052b149ef946da070687242e9c489af71",
+        "upstream": {
+          "revision": "418abca4f40a4080604834536342492dfd8bdf3e",
+          "expected_tree_sha256": "0fd8cfb5fd2c987d7d95090546497db848dca0b9229c66e077c18b3c90e8b82c",
+          "actual_tree_sha256": "0fd8cfb5fd2c987d7d95090546497db848dca0b9229c66e077c18b3c90e8b82c",
+          "file_count": 296,
+          "byte_count": 4418760
+        },
+        "task_runtime": {
+          "kind": "docker",
+          "image_id": "sha256:7253e3ee9ce1e9c5bdf778f63c1fb7f40a4a7b9f042eb5265dcfc9f25e3122a2",
+          "memory": "3g",
+          "cpus": 3,
+          "initial_python_packages": [
+            [
+              "pip",
+              "24.0"
+            ],
+            [
+              "setuptools",
+              "79.0.1"
+            ]
+          ],
+          "bootstrap_only": true,
+          "execution_protocol": "synchronous-bash-v1",
+          "task_spec_sha256": "66ca6a8e4f7fa39f9d87ff0de5aa5662fd7dbc12968b2e8d01eb08c09a65308b",
+          "lifecycle_wall_seconds": 21600.0
+        }
+      },
+      "output_artifact": {
+        "path": "workspace/discovery_result.json",
+        "sha256": "0d5280b54ed51189f1c401e50cd668e7afe96937850a98250409182c31b63b72"
+      }
+    },
+    {
+      "episode_id": "discovery_pilot_20260924__discoverybench__test__nls_ses_metadata_0_0_0_8c801142__agent_laboratory__N0__s0__r0__a423c2281",
+      "task_id": "nls_ses/metadata_0/0/0",
+      "host": "agent_laboratory",
+      "condition": "N0",
+      "seed": 0,
+      "model": "DeepSeek-V4-Pro",
+      "execution_mode": "host_native",
+      "benchmark_id": "discoverybench",
+      "split": "test",
+      "profile": "real-no-domain-knowledge",
+      "status": "stop",
+      "reason": "Agent Laboratory returned without a valid benchmark submission",
+      "submission_status": "invalid",
+      "scoring_status": "invalid_submission",
+      "hops": 0,
+      "repeat": 0,
+      "host_exit_code": 0,
+      "started_at_utc": "2026-09-24T18:10:49.766434+00:00",
+      "finished_at_utc": "2026-09-24T19:02:33.192903+00:00",
+      "elapsed_seconds_including_setup_and_scoring": 3103.4264693260193,
+      "configured_budget": {
+        "provider_cost_usd": 40.0,
+        "input_tokens": 60000000,
+        "output_tokens": 1300000,
+        "agent_calls": 900,
+        "wall_seconds": 21600.0,
+        "hops": 8
+      },
+      "gateway_usage": {
+        "calls": 142,
+        "response_calls": 142,
+        "failed_calls": 0,
+        "reported_input_tokens": 2423364,
+        "reported_output_tokens": 156157,
+        "budget_input_tokens": 2423364,
+        "budget_output_tokens": 156157,
+        "conservative_cost_usd": 5.471356
+      },
+      "original_scoring": {
+        "scorer_exit_code": 2,
+        "status": "invalid_submission",
+        "total_score": null,
+        "error": "missing or empty discovery_result.json",
+        "metrics": {},
+        "provenance": {}
+      },
+      "supplemental_scoring": {
+        "started_at": "2026-09-25T15:20:04.102753+00:00",
+        "finished_at": "2026-09-25T15:20:46.769165+00:00",
+        "elapsed_seconds": 42.63574747300299,
+        "scorer_exit_code": 0,
+        "status": "scored",
+        "total_score": 0.0,
+        "error": null,
+        "metrics": {
+          "recall_context": 0.0,
+          "mean_accuracy_score": 0.0,
+          "final_score": 0.0
+        },
+        "provenance": {
+          "source_revision": "c31fcf011e070f021a5f5b906896d0821f6880e8",
+          "scorer_source_sha256": "83406ddbe6894429cc5012b17cb82a209d5397aa7863b0aba1bb51edf1dd6c65",
+          "submission_sha256": "9470c98b28f6e7b1f1cd75a42f852392b2ed2c2b2dd63dafbf96f2e7bee00257",
+          "split": "test",
+          "profile": "real-no-domain-knowledge",
+          "wall_seconds": 31.14793579900288,
+          "judge_provider": "azure",
+          "judge_model": "gpt-5.4",
+          "judge_usage": {
+            "calls": 6,
+            "input_tokens": 3528,
+            "output_tokens": 688
+          }
+        },
+        "repair": {
+          "repair": "Copy existing outputs/discovery_result.json to workspace/discovery_result.json in isolated rescore directory.",
+          "candidate_sha256": "7be2a2d35d8984492a0ae3a0426c293422a848d99ee03755c8e9f250e40d7585",
+          "content_unchanged": true,
+          "original_files_unchanged": true,
+          "scorer_image": "sha256:240c12d2fb68eeef567c57e33da14c03cd0ba6ce44d96ae57802fea8eae67119",
+          "controller_source_tree_sha256": "01ad7afc4cc86dd5ad5f4fd47fe5646f3532419501cd7ecdc05b1d2624123b54"
+        }
+      },
+      "provenance": {
+        "run_config_sha256": "20079e53e7bcf87765d0bff0830998fc71941a02d6c992d3e02c457b6e43f359",
+        "workspace_input_sha256": "ba72df67b3566c973317949f0e256a00570f3356ae0ce0b52cb37f1a02d76e42",
+        "manifest_sha256": "743fe738f3d8e52b0e3def2f35f63619214f194f2be06a5d00eeb97d68823b55",
+        "benchmark_revision": "c31fcf011e070f021a5f5b906896d0821f6880e8",
+        "task_spec_sha256": "ddc13f90437dc3b5d2a39ec75efa35afc969807900d4d1f8c2cc00315282bc02",
+        "integration_tree_sha256": "25486ace46d0768ecbe699b01ef6c94052b149ef946da070687242e9c489af71",
+        "upstream": {
+          "revision": "d9017d90e329112d2a80b7712f37ee9094d2cd27",
+          "expected_tree_sha256": "a59e23a5a218f66d8ddb53cdaf40e3faa92592beebfc2881eaf7cf5bcecff73e",
+          "actual_tree_sha256": "a59e23a5a218f66d8ddb53cdaf40e3faa92592beebfc2881eaf7cf5bcecff73e",
+          "file_count": 35,
+          "byte_count": 1697843
+        },
+        "task_runtime": {
+          "kind": "docker",
+          "image_id": "sha256:7253e3ee9ce1e9c5bdf778f63c1fb7f40a4a7b9f042eb5265dcfc9f25e3122a2",
+          "memory": "3g",
+          "cpus": 3,
+          "initial_python_packages": [
+            [
+              "pip",
+              "24.0"
+            ],
+            [
+              "setuptools",
+              "79.0.1"
+            ]
+          ],
+          "bootstrap_only": true,
+          "execution_protocol": "synchronous-bash-v1",
+          "task_spec_sha256": "b27b27c059fc9764e0e362a21f6a916171a33fe712cdc4d0428b4677ba31e1c3",
+          "lifecycle_wall_seconds": 21600.0
+        }
+      },
+      "output_artifact": {
+        "path": "workspace/outputs/discovery_result.json",
+        "sha256": "7be2a2d35d8984492a0ae3a0426c293422a848d99ee03755c8e9f250e40d7585"
+      }
+    },
+    {
+      "episode_id": "discovery_pilot_20260924__discoverybench__test__worldbank_education_gdp_metadata_0_0_0_b0266dce__agent_laboratory__N0__s0__r0__a423c2281",
+      "task_id": "worldbank_education_gdp/metadata_0/0/0",
+      "host": "agent_laboratory",
+      "condition": "N0",
+      "seed": 0,
+      "model": "DeepSeek-V4-Pro",
+      "execution_mode": "host_native",
+      "benchmark_id": "discoverybench",
+      "split": "test",
+      "profile": "real-no-domain-knowledge",
+      "status": "completed",
+      "reason": "Agent Laboratory native workflow completed",
+      "submission_status": "valid",
+      "scoring_status": "scored",
+      "hops": 0,
+      "repeat": 0,
+      "host_exit_code": 0,
+      "started_at_utc": "2026-09-24T19:02:33.319719+00:00",
+      "finished_at_utc": "2026-09-24T20:28:33.862748+00:00",
+      "elapsed_seconds_including_setup_and_scoring": 5160.543028831482,
+      "configured_budget": {
+        "provider_cost_usd": 40.0,
+        "input_tokens": 60000000,
+        "output_tokens": 1300000,
+        "agent_calls": 900,
+        "wall_seconds": 21600.0,
+        "hops": 8
+      },
+      "gateway_usage": {
+        "calls": 175,
+        "response_calls": 173,
+        "failed_calls": 2,
+        "reported_input_tokens": 3986200,
+        "reported_output_tokens": 296458,
+        "budget_input_tokens": 4233984,
+        "budget_output_tokens": 427530,
+        "conservative_cost_usd": 10.178088
+      },
+      "original_scoring": {
+        "scorer_exit_code": 0,
+        "status": "scored",
+        "total_score": 0.0,
+        "error": null,
+        "metrics": {
+          "recall_context": 1.0,
+          "mean_accuracy_score": 0.0,
+          "final_score": 0.0
+        },
+        "provenance": {
+          "source_revision": "c31fcf011e070f021a5f5b906896d0821f6880e8",
+          "scorer_source_sha256": "83406ddbe6894429cc5012b17cb82a209d5397aa7863b0aba1bb51edf1dd6c65",
+          "submission_sha256": "4438aed127badd060a976616c9896cddf90843873eb6c31688b0533070493916",
+          "split": "test",
+          "profile": "real-no-domain-knowledge",
+          "wall_seconds": 28.114033518000724,
+          "judge_provider": "azure",
+          "judge_model": "gpt-5.4",
+          "judge_usage": {
+            "calls": 8,
+            "input_tokens": 12098,
+            "output_tokens": 1213
+          }
+        }
+      },
+      "supplemental_scoring": null,
+      "provenance": {
+        "run_config_sha256": "0d4ba284236b2b710064150900136118ca771cd45e481609b86f00331aa857e6",
+        "workspace_input_sha256": "442d91c711d32e49773b64a1b62f010479034f3750bf2aec290e6866236e2ff4",
+        "manifest_sha256": "743fe738f3d8e52b0e3def2f35f63619214f194f2be06a5d00eeb97d68823b55",
+        "benchmark_revision": "c31fcf011e070f021a5f5b906896d0821f6880e8",
+        "task_spec_sha256": "d19cdc65acb8b111339bbd47dc416a01672785df80d889d89e340b1c44f82ffb",
+        "integration_tree_sha256": "25486ace46d0768ecbe699b01ef6c94052b149ef946da070687242e9c489af71",
+        "upstream": {
+          "revision": "d9017d90e329112d2a80b7712f37ee9094d2cd27",
+          "expected_tree_sha256": "a59e23a5a218f66d8ddb53cdaf40e3faa92592beebfc2881eaf7cf5bcecff73e",
+          "actual_tree_sha256": "a59e23a5a218f66d8ddb53cdaf40e3faa92592beebfc2881eaf7cf5bcecff73e",
+          "file_count": 35,
+          "byte_count": 1697843
+        },
+        "task_runtime": {
+          "kind": "docker",
+          "image_id": "sha256:7253e3ee9ce1e9c5bdf778f63c1fb7f40a4a7b9f042eb5265dcfc9f25e3122a2",
+          "memory": "3g",
+          "cpus": 3,
+          "initial_python_packages": [
+            [
+              "pip",
+              "24.0"
+            ],
+            [
+              "setuptools",
+              "79.0.1"
+            ]
+          ],
+          "bootstrap_only": true,
+          "execution_protocol": "synchronous-bash-v1",
+          "task_spec_sha256": "4d29061b521fc749f86711ee2175f610bb5d9720ea9e10f1485f1723bcaff6be",
+          "lifecycle_wall_seconds": 21600.0
+        }
+      },
+      "output_artifact": {
+        "path": "workspace/discovery_result.json",
+        "sha256": "251cc097d829cd18c292ab335a692202d4ea472401429c37ed5bd992d513c48a"
+      }
+    },
+    {
+      "episode_id": "discovery_pilot_20260924__discoverybench__test__requirements_engineering_for_ML_enabled_systems_metadata_0_0_0_c2d22a93__agent_laboratory__N0__s0__r0__a423c2281",
+      "task_id": "requirements_engineering_for_ML_enabled_systems/metadata_0/0/0",
+      "host": "agent_laboratory",
+      "condition": "N0",
+      "seed": 0,
+      "model": "DeepSeek-V4-Pro",
+      "execution_mode": "host_native",
+      "benchmark_id": "discoverybench",
+      "split": "test",
+      "profile": "real-no-domain-knowledge",
+      "status": "stop",
+      "reason": "Agent Laboratory returned without a valid benchmark submission",
+      "submission_status": "invalid",
+      "scoring_status": "invalid_submission",
+      "hops": 0,
+      "repeat": 0,
+      "host_exit_code": 0,
+      "started_at_utc": "2026-09-24T20:28:33.981531+00:00",
+      "finished_at_utc": "2026-09-24T21:27:28.392598+00:00",
+      "elapsed_seconds_including_setup_and_scoring": 3534.4110674858093,
+      "configured_budget": {
+        "provider_cost_usd": 40.0,
+        "input_tokens": 60000000,
+        "output_tokens": 1300000,
+        "agent_calls": 900,
+        "wall_seconds": 21600.0,
+        "hops": 8
+      },
+      "gateway_usage": {
+        "calls": 177,
+        "response_calls": 177,
+        "failed_calls": 0,
+        "reported_input_tokens": 3416704,
+        "reported_output_tokens": 201043,
+        "budget_input_tokens": 3416704,
+        "budget_output_tokens": 201043,
+        "conservative_cost_usd": 7.63758
+      },
+      "original_scoring": {
+        "scorer_exit_code": 2,
+        "status": "invalid_submission",
+        "total_score": null,
+        "error": "missing or empty discovery_result.json",
+        "metrics": {},
+        "provenance": {}
+      },
+      "supplemental_scoring": {
+        "started_at": "2026-09-25T15:20:47.547944+00:00",
+        "finished_at": "2026-09-25T15:21:10.205800+00:00",
+        "elapsed_seconds": 22.645754028999363,
+        "scorer_exit_code": 0,
+        "status": "scored",
+        "total_score": 0.0,
+        "error": null,
+        "metrics": {
+          "recall_context": 1.0,
+          "mean_accuracy_score": 0.0,
+          "final_score": 0.0
+        },
+        "provenance": {
+          "source_revision": "c31fcf011e070f021a5f5b906896d0821f6880e8",
+          "scorer_source_sha256": "83406ddbe6894429cc5012b17cb82a209d5397aa7863b0aba1bb51edf1dd6c65",
+          "submission_sha256": "2e9be6d6fda545474a573e1163148c52a91a049e3d16b954215274e92a365c8b",
+          "split": "test",
+          "profile": "real-no-domain-knowledge",
+          "wall_seconds": 16.023339330000454,
+          "judge_provider": "azure",
+          "judge_model": "gpt-5.4",
+          "judge_usage": {
+            "calls": 5,
+            "input_tokens": 34672,
+            "output_tokens": 570
+          }
+        },
+        "repair": {
+          "repair": "Copy existing outputs/discovery_result.json to workspace/discovery_result.json in isolated rescore directory.",
+          "candidate_sha256": "cf1758c9fad886c22162472f458eae3d6871822f83100e7c848907d0cf848586",
+          "content_unchanged": true,
+          "original_files_unchanged": true,
+          "scorer_image": "sha256:240c12d2fb68eeef567c57e33da14c03cd0ba6ce44d96ae57802fea8eae67119",
+          "controller_source_tree_sha256": "01ad7afc4cc86dd5ad5f4fd47fe5646f3532419501cd7ecdc05b1d2624123b54"
+        }
+      },
+      "provenance": {
+        "run_config_sha256": "881e1f2a945632ce306ea7378f0c6e86221e95924b2ba7ff3643269699221041",
+        "workspace_input_sha256": "5fa1c302fee64b349f363d351271e27bffcf3c6c31f7c880df72cb99941ab42f",
+        "manifest_sha256": "743fe738f3d8e52b0e3def2f35f63619214f194f2be06a5d00eeb97d68823b55",
+        "benchmark_revision": "c31fcf011e070f021a5f5b906896d0821f6880e8",
+        "task_spec_sha256": "07fff0852e3b055d7623416448f1b2d216de63d77e39f4f7d16b16058b8e8716",
+        "integration_tree_sha256": "25486ace46d0768ecbe699b01ef6c94052b149ef946da070687242e9c489af71",
+        "upstream": {
+          "revision": "d9017d90e329112d2a80b7712f37ee9094d2cd27",
+          "expected_tree_sha256": "a59e23a5a218f66d8ddb53cdaf40e3faa92592beebfc2881eaf7cf5bcecff73e",
+          "actual_tree_sha256": "a59e23a5a218f66d8ddb53cdaf40e3faa92592beebfc2881eaf7cf5bcecff73e",
+          "file_count": 35,
+          "byte_count": 1697843
+        },
+        "task_runtime": {
+          "kind": "docker",
+          "image_id": "sha256:7253e3ee9ce1e9c5bdf778f63c1fb7f40a4a7b9f042eb5265dcfc9f25e3122a2",
+          "memory": "3g",
+          "cpus": 3,
+          "initial_python_packages": [
+            [
+              "pip",
+              "24.0"
+            ],
+            [
+              "setuptools",
+              "79.0.1"
+            ]
+          ],
+          "bootstrap_only": true,
+          "execution_protocol": "synchronous-bash-v1",
+          "task_spec_sha256": "66ca6a8e4f7fa39f9d87ff0de5aa5662fd7dbc12968b2e8d01eb08c09a65308b",
+          "lifecycle_wall_seconds": 21600.0
+        }
+      },
+      "output_artifact": {
+        "path": "workspace/outputs/discovery_result.json",
+        "sha256": "cf1758c9fad886c22162472f458eae3d6871822f83100e7c848907d0cf848586"
+      }
+    }
+  ]
+}

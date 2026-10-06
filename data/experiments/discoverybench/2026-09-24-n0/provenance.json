@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "batch": "discovery-20260924-three-tasks-n0",
+  "source_paths": "Paths refer to locally retained source records, not files included in this public data extract.",
+  "extraction": "Only numeric scores, statuses, usage, non-secret runtime metadata, and hashes are published. Prompts, responses, gold answers, credentials, endpoint URLs, and full runtime archives are excluded.",
+  "integration_commit": null,
+  "integration_commit_note": "The retained episode records identify integration/controller source digests; an exact tested integration Git commit is not asserted.",
+  "controller_source_tree_sha256": "01ad7afc4cc86dd5ad5f4fd47fe5646f3532419501cd7ecdc05b1d2624123b54",
+  "benchmark": {
+    "url": "https://github.com/allenai/discoverybench.git",
+    "revision": "c31fcf011e070f021a5f5b906896d0821f6880e8",
+    "scorer_file": "eval/new_eval.py",
+    "scorer_lf_sha256": "83406ddbe6894429cc5012b17cb82a209d5397aa7863b0aba1bb51edf1dd6c65",
+    "profile": "real-no-domain-knowledge"
+  },
+  "hosts": {
+    "evo_scientist": {
+      "url": "https://github.com/EvoScientist/EvoScientist.git",
+      "revision": "418abca4f40a4080604834536342492dfd8bdf3e",
+      "license": "Apache-2.0",
+      "tree_sha256": "4f7c72a69bee443c619b59a9c110f799565eabf75d5fdaae74504d8cfe0ecf15",
+      "runtime_tree_sha256": "0fd8cfb5fd2c987d7d95090546497db848dca0b9229c66e077c18b3c90e8b82c"
+    },
+    "agent_laboratory": {
+      "url": "https://github.com/SamuelSchmidgall/AgentLaboratory.git",
+      "revision": "d9017d90e329112d2a80b7712f37ee9094d2cd27",
+      "license": "MIT",
+      "tree_sha256": "a59e23a5a218f66d8ddb53cdaf40e3faa92592beebfc2881eaf7cf5bcecff73e"
+    }
+  },
+  "images": {
+    "host_images": {
+      "evo_scientist": "sha256:e3f7e0f957e0bdfcef33c331976b26bdd8c233b20c686db010afac852a00ddc3",
+      "agent_laboratory": "sha256:43b76c5fe835062a1fa50d315d417dd2ed5e2d355eba75ec65829d00d7de53e5"
+    },
+    "scorer_image": "sha256:240c12d2fb68eeef567c57e33da14c03cd0ba6ce44d96ae57802fea8eae67119",
+    "runtime_image": "sha256:7253e3ee9ce1e9c5bdf778f63c1fb7f40a4a7b9f042eb5265dcfc9f25e3122a2"
+  },
+  "execution": {
+    "global_parallelism": 2,
+    "host_order": [
+      "evo_scientist",
+      "agent_laboratory"
+    ],
+    "host_cpus": 2,
+    "host_memory": "4g",
+    "task_cpus": 3,
+    "task_memory": "3g",
+    "cpu_guard": {
+      "sample_seconds": 5,
+      "pause_above_percent": 90,
+      "overload_seconds": 20,
+      "resume_below_percent": 70,
+      "recovery_seconds": 10,
+      "max_pause_seconds": 20,
+      "cooldown_seconds": 20
+    },
+    "score_timeout": 1800,
+    "scheduling": "paired_tasks"
+  },
+  "sampling": "Observed model parameters are retained for each gateway request in request-usage.json. Seed 0 is the episode seed; provider determinism is not implied.",
+  "rescore_batch": "discovery-n0-location-rescore-20260925T152002Z",
+  "original_source_hashes_reverified": true,
+  "original_source_files_reverified": 29,
+  "source_files": [
+    {
+      "path": "runs/discovery-20260924-three-tasks-n0/benchmark.lock.json",
+      "sha256": "982267f569b3fecd2c8ab62f8c6cd2aa7cfc1fb585f114a8848fafb6f6156b27",
+      "bytes": 804
+    },
+    {
+      "path": "runs/discovery-20260924-three-tasks-n0/episodes/discovery_pilot_20260924__discoverybench__test__nls_ses_metadata_0_0_0_8c801142__agent_laboratory__N0__s0__r0__a423c2281/episode.json",
+      "sha256": "436fdd8b8cff7f0359ef3ae32a5402583007831115442e6ea9478206602e07e2",
+      "bytes": 3016
+    },
+    {
+      "path": "runs/discovery-20260924-three-tasks-n0/episodes/discovery_pilot_20260924__discoverybench__test__nls_ses_metadata_0_0_0_8c801142__agent_laboratory__N0__s0__r0__a423c2281/score.json",
+      "sha256": "ec6043c1538cefc30a85566760a831e77e57ab9a2f481029e0db4f1922921159",
+      "bytes": 225
+    },
+    {
+      "path": "runs/discovery-20260924-three-tasks-n0/episodes/discovery_pilot_20260924__discoverybench__test__nls_ses_metadata_0_0_0_8c801142__agent_laboratory__N0__s0__r0__a423c2281/workspace/outputs/discovery_result.json",
+      "sha256": "7be2a2d35d8984492a0ae3a0426c293422a848d99ee03755c8e9f250e40d7585",
+      "bytes": 2224
+    },
+    {
+      "path": "runs/discovery-20260924-three-tasks-n0/episodes/discovery_pilot_20260924__discoverybench__test__nls_ses_metadata_0_0_0_8c801142__evo_scientist__N0__s0__r0__a423c2281/episode.json",
+      "sha256": "5802734ec85e5fa557999b066b0f80edebf951ebb235576e08f524cdbd359def",
+      "bytes": 2954
+    },
+    {
+      "path": "runs/discovery-20260924-three-tasks-n0/episodes/discovery_pilot_20260924__discoverybench__test__nls_ses_metadata_0_0_0_8c801142__evo_scientist__N0__s0__r0__a423c2281/score.json",
+      "sha256": "b18cabf9f92659ffa9f57cd9e8a5c0323be5da3723d178191038c70c6dfc26c9",
+      "bytes": 16177
+    },
+    {
+      "path": "runs/discovery-20260924-three-tasks-n0/episodes/discovery_pilot_20260924__discoverybench__test__nls_ses_metadata_0_0_0_8c801142__evo_scientist__N0__s0__r0__a423c2281/workspace/discovery_result.json",
+      "sha256": "2aafa390caa24621f42f12a75d7032acbd812ad4ac6a9d198acad2e4c172053b",
+      "bytes": 4016
+    },
+    {
+      "path": "runs/discovery-20260924-three-tasks-n0/episodes/discovery_pilot_20260924__discoverybench__test__requirements_engineering_for_ML_enabled_systems_metadata_0_0_0_c2d22a93__agent_laboratory__N0__s0__r0__a423c2281/episode.json",
+      "sha256": "6eebf59a9f4a4b6d0c311ea903a413155c39b8742a0d5cc3925128977815d7e1",
+      "bytes": 3174
+    },
+    {
+      "path": "runs/discovery-20260924-three-tasks-n0/episodes/discovery_pilot_20260924__discoverybench__test__requirements_engineering_for_ML_enabled_systems_metadata_0_0_0_c2d22a93__agent_laboratory__N0__s0__r0__a423c2281/score.json",
+      "sha256": "56065c7ba00eeddb4053fc2adf60b5926c8519edae2e3d4cee55a370beaa4aef",
+      "bytes": 265
+    },
+    {
+      "path": "runs/discovery-20260924-three-tasks-n0/episodes/discovery_pilot_20260924__discoverybench__test__requirements_engineering_for_ML_enabled_systems_metadata_0_0_0_c2d22a93__agent_laboratory__N0__s0__r0__a423c2281/workspace/outputs/discovery_result.json",
+      "sha256": "cf1758c9fad886c22162472f458eae3d6871822f83100e7c848907d0cf848586",
+      "bytes": 2578
+    },
+    {
+      "path": "runs/discovery-20260924-three-tasks-n0/episodes/discovery_pilot_20260924__discoverybench__test__requirements_engineering_for_ML_enabled_systems_metadata_0_0_0_c2d22a93__evo_scientist__N0__s0__r0__a423c2281/episode.json",
+      "sha256": "b5c933834ba363f1b26535f2ea34954af457c646cbcfd50a2128910f3933a65a",
+      "bytes": 3113
+    },
+    {
+      "path": "runs/discovery-20260924-three-tasks-n0/episodes/discovery_pilot_20260924__discoverybench__test__requirements_engineering_for_ML_enabled_systems_metadata_0_0_0_c2d22a93__evo_scientist__N0__s0__r0__a423c2281/score.json",
+      "sha256": "29316d8c0c15010e36d8c08aacd9e3561f6f2cff0e28fb352b3ed19cbc93c48b",
+      "bytes": 15975
+    },
+    {
+      "path": "runs/discovery-20260924-three-tasks-n0/episodes/discovery_pilot_20260924__discoverybench__test__requirements_engineering_for_ML_enabled_systems_metadata_0_0_0_c2d22a93__evo_scientist__N0__s0__r0__a423c2281/workspace/discovery_result.json",
+      "sha256": "0d5280b54ed51189f1c401e50cd668e7afe96937850a98250409182c31b63b72",
+      "bytes": 3894
+    },
+    {
+      "path": "runs/discovery-20260924-three-tasks-n0/episodes/discovery_pilot_20260924__discoverybench__test__worldbank_education_gdp_metadata_0_0_0_b0266dce__agent_laboratory__N0__s0__r0__a423c2281/episode.json",
+      "sha256": "2dd704fd56aa63126e3d2bc121f4ea0106df510a5bb8112356f35317536ebd23",
+      "bytes": 3040
+    },
+    {
+      "path": "runs/discovery-20260924-three-tasks-n0/episodes/discovery_pilot_20260924__discoverybench__test__worldbank_education_gdp_metadata_0_0_0_b0266dce__agent_laboratory__N0__s0__r0__a423c2281/score.json",
+      "sha256": "a5ce7792d6709e7debf8d6834fe3881e724daefc5eb5568f7c09024b746ec273",
+      "bytes": 18353
+    },
+    {
+      "path": "runs/discovery-20260924-three-tasks-n0/episodes/discovery_pilot_20260924__discoverybench__test__worldbank_education_gdp_metadata_0_0_0_b0266dce__agent_laboratory__N0__s0__r0__a423c2281/workspace/discovery_result.json",
+      "sha256": "251cc097d829cd18c292ab335a692202d4ea472401429c37ed5bd992d513c48a",
+      "bytes": 3637
+    },
+    {
+      "path": "runs/discovery-20260924-three-tasks-n0/episodes/discovery_pilot_20260924__discoverybench__test__worldbank_education_gdp_metadata_0_0_0_b0266dce__evo_scientist__N0__s0__r0__a423c2281/episode.json",
+      "sha256": "0bf314075e94231fed0cedc8e22d409af24f0b5e912a184be4552d0cc0e85b91",
+      "bytes": 3017
+    },
+    {
+      "path": "runs/discovery-20260924-three-tasks-n0/episodes/discovery_pilot_20260924__discoverybench__test__worldbank_education_gdp_metadata_0_0_0_b0266dce__evo_scientist__N0__s0__r0__a423c2281/score.json",
+      "sha256": "41d75e2688367d29800bc21a1da39708686e1a7fae7d2c513385717d222f595f",
+      "bytes": 24885
+    },
+    {
+      "path": "runs/discovery-20260924-three-tasks-n0/episodes/discovery_pilot_20260924__discoverybench__test__worldbank_education_gdp_metadata_0_0_0_b0266dce__evo_scientist__N0__s0__r0__a423c2281/workspace/discovery_result.json",
+      "sha256": "c4053ef5ee2ab9703d87c92f1fc0e51aa6db660561c6b18c19ce8d0d71f1e589",
+      "bytes": 5146
+    },
+    {
+      "path": "runs/discovery-20260924-three-tasks-n0/frozen-plan.json",
+      "sha256": "0d7fadc871548d96e8bd22af2c9f97737977749b2ae8875a064fd6131d1b33c3",
+      "bytes": 10445
+    },
+    {
+      "path": "runs/discovery-20260924-three-tasks-n0/logs/discovery_pilot_20260924__discoverybench__test__nls_ses_metadata_0_0_0_8c801142__agent_laboratory__N0__s0__r0__a423c2281/model/usage.json",
+      "sha256": "396f34a0cd3c1a8ccfdcfda0908e7cc81175602adef8f5aa12315841bc5e94bc",
+      "bytes": 716
+    },
+    {
+      "path": "runs/discovery-20260924-three-tasks-n0/logs/discovery_pilot_20260924__discoverybench__test__nls_ses_metadata_0_0_0_8c801142__evo_scientist__N0__s0__r0__a423c2281/model/usage.json",
+      "sha256": "9dc500a2a70c25d33748a1a00918970bac2bc54aaf40c19dc1c650d1e0fd8318",
+      "bytes": 704
+    },
+    {
+      "path": "runs/discovery-20260924-three-tasks-n0/logs/discovery_pilot_20260924__discoverybench__test__requirements_engineering_for_ML_enabled_systems_metadata_0_0_0_c2d22a93__agent_laboratory__N0__s0__r0__a423c2281/model/usage.json",
+      "sha256": "b051b8e832b4b7e1622b997510ed2f0cdd1144d651119c4cc779bee56db9cd7b",
+      "bytes": 716
+    },
+    {
+      "path": "runs/discovery-20260924-three-tasks-n0/logs/discovery_pilot_20260924__discoverybench__test__requirements_engineering_for_ML_enabled_systems_metadata_0_0_0_c2d22a93__evo_scientist__N0__s0__r0__a423c2281/model/usage.json",
+      "sha256": "6e1e8c7502b8f561102ebcbf32ff5b6234a88d2d4aac3092af3a18fb933179c4",
+      "bytes": 715
+    },
+    {
+      "path": "runs/discovery-20260924-three-tasks-n0/logs/discovery_pilot_20260924__discoverybench__test__worldbank_education_gdp_metadata_0_0_0_b0266dce__agent_laboratory__N0__s0__r0__a423c2281/model/usage.json",
+      "sha256": "ffa3809989929e5b1f3eae046d614401387ab8408f7b7f3b57e83ebd459832bd",
+      "bytes": 716
+    },
+    {
+      "path": "runs/discovery-20260924-three-tasks-n0/logs/discovery_pilot_20260924__discoverybench__test__worldbank_education_gdp_metadata_0_0_0_b0266dce__evo_scientist__N0__s0__r0__a423c2281/model/usage.json",
+      "sha256": "6c3c1e1e6614e0012a60bee0e442dc1fe552b9978bb2fd40be94eb933e684754",
+      "bytes": 715
+    },
+    {
+      "path": "runs/discovery-20260924-three-tasks-n0/status.json",
+      "sha256": "5664f1e48e1c71733683037380785ca9eaf9caac8b0f21b80cc8b4c0f650543b",
+      "bytes": 93147
+    },
+    {
+      "path": "runs/discovery-20260924-three-tasks-n0/upstream.lock.json",
+      "sha256": "6c455f3f01ff5a4c3e57392ec89760028ba970708f7d1178b60c5cad2c4630b1",
+      "bytes": 4176
+    },
+    {
+      "path": "runs/discovery-n0-location-rescore-20260925T152002Z/episodes/discovery_pilot_20260924__discoverybench__test__nls_ses_metadata_0_0_0_8c801142__agent_laboratory__N0__s0__r0__a423c2281/repair.json",
+      "sha256": "98a2dc33930e6b5e5eb48122db15c00e5fc736aa4b1507741f1669d40b9c954c",
+      "bytes": 1192
+    },
+    {
+      "path": "runs/discovery-n0-location-rescore-20260925T152002Z/episodes/discovery_pilot_20260924__discoverybench__test__nls_ses_metadata_0_0_0_8c801142__agent_laboratory__N0__s0__r0__a423c2281/score.json",
+      "sha256": "b6900945e9e63b2076ecb83e304ebe2ebd6b24c807229f1a95d0960f9c444910",
+      "bytes": 7193
+    },
+    {
+      "path": "runs/discovery-n0-location-rescore-20260925T152002Z/episodes/discovery_pilot_20260924__discoverybench__test__nls_ses_metadata_0_0_0_8c801142__agent_laboratory__N0__s0__r0__a423c2281/workspace/discovery_result.json",
+      "sha256": "7be2a2d35d8984492a0ae3a0426c293422a848d99ee03755c8e9f250e40d7585",
+      "bytes": 2224
+    },
+    {
+      "path": "runs/discovery-n0-location-rescore-20260925T152002Z/episodes/discovery_pilot_20260924__discoverybench__test__requirements_engineering_for_ML_enabled_systems_metadata_0_0_0_c2d22a93__agent_laboratory__N0__s0__r0__a423c2281/repair.json",
+      "sha256": "7af5822fc74105640ee2dcca327bcf868f81c498088f57aad790dd769e26383f",
+      "bytes": 1258
+    },
+    {
+      "path": "runs/discovery-n0-location-rescore-20260925T152002Z/episodes/discovery_pilot_20260924__discoverybench__test__requirements_engineering_for_ML_enabled_systems_metadata_0_0_0_c2d22a93__agent_laboratory__N0__s0__r0__a423c2281/score.json",
+      "sha256": "e028d518db5000e540adaf471ff8a4db663ca5afddee1208653ee233da68b58a",
+      "bytes": 12153
+    },
+    {
+      "path": "runs/discovery-n0-location-rescore-20260925T152002Z/episodes/discovery_pilot_20260924__discoverybench__test__requirements_engineering_for_ML_enabled_systems_metadata_0_0_0_c2d22a93__agent_laboratory__N0__s0__r0__a423c2281/workspace/discovery_result.json",
+      "sha256": "cf1758c9fad886c22162472f458eae3d6871822f83100e7c848907d0cf848586",
+      "bytes": 2578
+    },
+    {
+      "path": "runs/discovery-n0-location-rescore-20260925T152002Z/original-source-hashes.json",
+      "sha256": "f40e1ff8a7a8495a98d238dd67752ff3dffc639048ef9390793ffa625fc92c5a",
+      "bytes": 8516
+    },
+    {
+      "path": "runs/discovery-n0-location-rescore-20260925T152002Z/rescore-state.json",
+      "sha256": "45a9f6301969d615b106276847622e7e9a9491d9c8cf10bbb42e16b05375055e",
+      "bytes": 2174
+    }
+  ],
+  "request_hashes": "Request, response, and error SHA-256 hashes are included per call in request-usage.json."
+}
