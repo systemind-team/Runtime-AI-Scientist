@@ -10,6 +10,7 @@
   🌐 <a href="https://systemind-team.github.io/Runtime-AI-Scientist/">[Project Page]</a> |
   🎬 <a href="https://systemind-team.github.io/Runtime-AI-Scientist/#video">[Video]</a> |
   📖 <a href="docs/runbook.md">[Runbook]</a> |
+  🗺️ <a href="#how-it-fits-together">[Architecture]</a> |
   🧪 <a href="#run-more-experiments-with-us">[Run Experiments With Us]</a> |
   📝 <a href="#citing-runtime-ai-scientist">[Cite]</a>
 </p>
@@ -96,15 +97,13 @@ N0 bypasses the RAC runner entirely. The integration layer invokes the host-owne
 
 ### How it fits together
 
-```mermaid
-flowchart TB
-  T["ResearchClawBench task, target_study removed"] --> S("N0: the host's native scheduler<br/>R1–R3: the shared RAC runner")
-  S --> P["Shared N0–R3 policy<br/>selection · contracts · verification · budget"]
-  S -.-> L[("Append-only usage<br/>and decision ledger")]
-  P --> B["HostBridge protocol"]
-  B --> H1["ARK"] & H2["Agent Laboratory"] & H3["EvoScientist"]
-  H1 & H2 & H3 --> R["Terminal report → isolated ResearchClawBench scorer"]
-```
+[![Runtime AI Scientist execution architecture](docs/assets/runtime-architecture.png)](docs/architecture/index.html?theme=light&effects=1)
+
+**[Interactive architecture HTML ↗](docs/architecture/index.html?theme=light&effects=1)** · [Vector SVG](docs/assets/runtime-architecture.svg) · [Full-resolution PNG](docs/assets/runtime-architecture.png) · [Detailed architecture notes](docs/architecture.md)
+
+The static preview and interactive map share the same SVG diagram: circle icons, attached relationship labels, and the project's white, blue and gold palette. When browsing on GitHub, download the HTML file and open it in a browser; GitHub's file view does not run interactive HTML. No server is required. Use the Effects control to enable optional single-pass relationship cues, which illustrate authored connections rather than live execution.
+
+The overview separates the N0 native lifecycle from the R1–R3 shared runtime. Each episode uses **one** of the three host adapters. Open the interactive map to zoom, focus on nodes and inspect source references pinned to the reviewed revision.
 
 Host bridges translate; they do not decide. A bridge maps native roles, stages, and files to capability cards and typed artifacts, invokes the requested native capability under a supplied contract, and reports usage and errors. Ranking capabilities, choosing retries, setting acceptance thresholds, and deciding when an episode stops all live in the shared package, so every host is compared under the same rules. The three hosts run in separate images because their dependency stacks conflict. See [docs/architecture.md](docs/architecture.md) for the full boundary.
 
