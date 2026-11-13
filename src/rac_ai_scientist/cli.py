@@ -331,6 +331,7 @@ def _run_one(args: argparse.Namespace) -> int:
         "budget": to_jsonable(budget),
         "review_score_threshold": args.review_score_threshold,
         "execution_mode": execution_mode,
+        "rac_features": condition.features(),
     }
     if sharednet_room_id:
         run_config["sharednet_room_id"] = sharednet_room_id
@@ -348,6 +349,7 @@ def _run_one(args: argparse.Namespace) -> int:
         "manifest_sha256": config_hash(json.loads(manifest.read_text(encoding="utf-8"))),
         "status": "initializing",
         "execution_mode": execution_mode,
+        "rac_features": condition.features(),
         "integration": integration_provenance(root),
         "runtime": runtime_provenance(model=model),
     }
@@ -482,7 +484,7 @@ def build_parser() -> argparse.ArgumentParser:
     run.add_argument("--project-root", default=str(Path(__file__).resolve().parents[2]))
     run.add_argument("--host", required=True, choices=HOST_IDS)
     run.add_argument("--upstream", help="explicit host checkout (or set RAC_HOST_ROOT)")
-    run.add_argument("--condition", required=True, choices=("N0", "R1", "R2", "R3"))
+    run.add_argument("--condition", required=True, choices=("N0", "R1", "R2", "R3", "R2+C", "R2+V", "R2_C", "R2_V"))
     run.add_argument("--sharednet-room-id", help="unique SharedNet Room for this episode (or set SHAREDNET_ROOM_ID)")
     run.add_argument("--sharednet-env-file", help="dotenv file for this run (defaults to <task-dir>/.env)")
     run.add_argument("--task-dir", required=True)

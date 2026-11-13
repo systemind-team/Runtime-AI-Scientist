@@ -41,7 +41,8 @@ class EpisodeRunner:
                 key = f"{issue.kind}:{issue.issue_id}"
                 self._issue_sightings[key] = self._issue_sightings.get(key, 0) + 1
                 issue.attempts = max(issue.attempts, self._issue_sightings[key] - 1)
-            self.ledger.append({"type": "checkpoint", "condition": self.condition.name, "payload": checkpoint})
+            self.ledger.append({"type": "checkpoint", "condition": self.condition.name,
+                                "rac_features": self.condition.features(), "payload": checkpoint})
 
             if checkpoint.terminal or checkpoint.remaining_budget.exhausted():
                 decision = self.policy.decide(checkpoint)
