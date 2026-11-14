@@ -185,6 +185,8 @@ class CoordinationDecision:
     reason: str
     contract: WorkContract | None = None
     verification: Verification | None = None
+    # Frozen before invocation; private evaluation criteria, never a host prompt.
+    verification_spec: WorkContract | None = None
 
 
 def to_jsonable(value: Any) -> Any:

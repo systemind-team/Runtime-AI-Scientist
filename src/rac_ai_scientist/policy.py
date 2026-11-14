@@ -57,7 +57,9 @@ class SharedPolicy:
         if card is None:
             return CoordinationDecision(Action.ESCALATE, None, "no admitted capability matches the current state")
         contract = self._contract(checkpoint, card) if self.condition.enables("work_contracts") else None
-        return CoordinationDecision(Action.CONTINUE, card.capability_id, "shared runtime selection", contract)
+        spec = self._contract(checkpoint, card) if self.condition.enables("verifier") and contract is None else None
+        return CoordinationDecision(Action.CONTINUE, card.capability_id, "shared runtime selection", contract,
+                                    verification_spec=spec)
 
     def evaluate(
         self,
@@ -72,7 +74,7 @@ class SharedPolicy:
         if not self.condition.enables("verifier"):
             if (
                 result.timed_out
-                and self.condition in {Condition.R1, Condition.R2}
+                and self.condition in {Condition.R1, Condition.R2, Condition.R2_C}
                 and result.metrics.get("native_timeout_continuable") == 1.0
             ):
                 return CoordinationDecision(
@@ -86,15 +88,17 @@ class SharedPolicy:
                 return CoordinationDecision(Action.STOP, None, "native workflow reports completion")
             return CoordinationDecision(Action.REVERIFY, None, "take a fresh checkpoint; verification disabled")
 
-        if decision.contract is None:
-            raise ValueError("R3+ requires a work contract")
-        verification = verify_result(decision.contract, result)
+        criteria = decision.contract or decision.verification_spec
+        if criteria is None:
+            raise ValueError("verification requires pre-invocation evidence criteria")
+        verification = verify_result(criteria, result)
         # R3 verification is advisory.  Its evidence remains in the ledger and
         # SharedNet context, but it never stops, retries, reroutes, or rolls back
         # an invocation.  The next loop takes a fresh checkpoint and performs a
         # normal runtime selection.  Transport-fatal errors above remain fatal.
         reason = f"verification advisory ({verification.verdict.value}): {verification.reason}"
-        return CoordinationDecision(Action.REVERIFY, None, reason, decision.contract, verification)
+        return CoordinationDecision(Action.REVERIFY, None, reason, decision.contract, verification,
+                                    decision.verification_spec)
 
     @staticmethod
     def _card(checkpoint: Checkpoint, capability_id: str) -> CapabilityCard:

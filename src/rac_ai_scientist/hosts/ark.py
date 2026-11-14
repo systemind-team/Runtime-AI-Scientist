@@ -442,7 +442,7 @@ class ArkBridge(HostBridge):
         repeating the timed-out capability. R3 timeouts remain advisory and are
         accepted by the runner's verifier path, so they do not arrive here.
         """
-        if not result.timed_out or self.condition not in {Condition.R1, Condition.R2}:
+        if not result.timed_out or self.condition not in {Condition.R1, Condition.R2, Condition.R2_C}:
             self.reject_invocation(result, evaluation)
             return
 
