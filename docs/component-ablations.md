@@ -24,8 +24,8 @@ CLI 接受 `R2+C` / `R2+V`，也接受别名 `R2_C` / `R2_V`；序列化记录�
 需要 Python 3.10+、Git。正式运行还需支持 BuildKit named contexts 的 Docker Compose v2，以及对模型服务和 SharedNet 的网络访问。
 
 ```bash
-git clone https://github.com/FORLEMON/RAC-AI_Scientist.git
-cd RAC-AI_Scientist
+git clone https://github.com/systemind-team/Runtime-AI-Scientist.git
+cd Runtime-AI-Scientist
 # 若 main 尚未合并此改动，使用发布分支：
 git switch feat/r2-component-ablations-public
 export REPO="$(pwd)"
