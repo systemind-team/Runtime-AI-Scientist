@@ -4,7 +4,7 @@ from enum import IntEnum
 
 
 class Condition(IntEnum):
-    """Active cumulative experimental conditions."""
+    """Original cumulative conditions and independent component ablations."""
 
     N0 = 0
     R1 = 1

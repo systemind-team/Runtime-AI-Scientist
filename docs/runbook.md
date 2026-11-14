@@ -25,6 +25,8 @@ The supported condition ladder is N0 through R3:
 An R3 verification verdict is recorded and supplied to the next selected agent.
 It does not roll back the workspace, force a retry, or stop the episode.
 
+For the independent **R2+C** (contracts only) and **R2+V** (verifier only) variants, see the [component-ablation getting-started tutorial (中文)](component-ablations.md). Both require a fresh SharedNet Room per episode, just like R1–R3. The original ladder remains unchanged.
+
 ## 1. Install and run offline checks
 
 From the repository root:
