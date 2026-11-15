@@ -1,0 +1,711 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Runtime AI Scientist",
+    "locale": "en",
+    "output": "docs/architecture/index.html",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "hidden"
+    },
+    "repository": {
+      "url": "https://github.com/systemind-team/Runtime-AI-Scientist.git",
+      "revision": "bf11766341e2fbf60612bf486f577d6db33ea259",
+      "provider": "github",
+      "link_mode": "web"
+    }
+  },
+  "components": [
+    {
+      "id": "visible_task",
+      "type": "external",
+      "label": "Public Inputs",
+      "sublabel": "task_info · data · related_work",
+      "tag": "ResearchClawBench",
+      "pos": [
+        122,
+        34
+      ],
+      "size": [
+        76,
+        76
+      ],
+      "sources": [
+        {
+          "path": "src/rac_ai_scientist/benchmark.py",
+          "line": 158,
+          "end_line": 214,
+          "label": "Copy only host-visible inputs"
+        }
+      ]
+    },
+    {
+      "id": "experiment_cli",
+      "type": "frontend",
+      "label": "Experiment CLI",
+      "sublabel": "run · host / condition / seed / budget",
+      "tag": "Isolated episode workspace",
+      "pos": [
+        522,
+        34
+      ],
+      "size": [
+        76,
+        76
+      ],
+      "sources": [
+        {
+          "path": "pyproject.toml",
+          "line": 30,
+          "end_line": 31,
+          "label": "CLI entry point"
+        },
+        {
+          "path": "src/rac_ai_scientist/cli.py",
+          "line": 244,
+          "end_line": 324,
+          "label": "Prepare inputs and load bridge"
+        },
+        {
+          "path": "src/rac_ai_scientist/cli.py",
+          "line": 380,
+          "end_line": 414,
+          "label": "Initialize, execute, record metadata"
+        }
+      ]
+    },
+    {
+      "id": "episode_trace",
+      "type": "database",
+      "label": "Execution Records",
+      "sublabel": "coordination.jsonl · episode.json",
+      "tag": "Append events and usage",
+      "pos": [
+        862,
+        114
+      ],
+      "size": [
+        76,
+        76
+      ],
+      "sources": [
+        {
+          "path": "src/rac_ai_scientist/ledger.py",
+          "line": 20,
+          "end_line": 32,
+          "label": "Append and flush JSONL events"
+        },
+        {
+          "path": "src/rac_ai_scientist/runner.py",
+          "line": 44,
+          "end_line": 70,
+          "label": "Checkpoints, decisions and results"
+        },
+        {
+          "path": "src/rac_ai_scientist/cli.py",
+          "line": 388,
+          "end_line": 414,
+          "label": "Persist episode status"
+        }
+      ]
+    },
+    {
+      "id": "native_path",
+      "type": "backend",
+      "label": "Native Lifecycle",
+      "sublabel": "bridge.run_native()",
+      "tag": "N0 · Native scheduling",
+      "pos": [
+        122,
+        409
+      ],
+      "size": [
+        76,
+        76
+      ],
+      "sources": [
+        {
+          "path": "src/rac_ai_scientist/cli.py",
+          "line": 34,
+          "end_line": 42,
+          "label": "N0 invokes the native lifecycle"
+        },
+        {
+          "path": "src/rac_ai_scientist/bridge.py",
+          "line": 88,
+          "end_line": 99,
+          "label": "Native setup and execution interface"
+        }
+      ]
+    },
+    {
+      "id": "episode_runner",
+      "type": "backend",
+      "label": "RAC Runner",
+      "sublabel": "checkpoint → invoke → evaluate",
+      "tag": "R1–R3 · Common execution loop",
+      "pos": [
+        522,
+        252
+      ],
+      "size": [
+        76,
+        76
+      ],
+      "sources": [
+        {
+          "path": "src/rac_ai_scientist/cli.py",
+          "line": 44,
+          "end_line": 49,
+          "label": "RAC execution entry"
+        },
+        {
+          "path": "src/rac_ai_scientist/runner.py",
+          "line": 20,
+          "end_line": 113,
+          "label": "Loop, execution, logging and stopping"
+        }
+      ]
+    },
+    {
+      "id": "shared_policy",
+      "type": "backend",
+      "label": "RAC Policy",
+      "sublabel": "SharedPolicy · select / contract / verify",
+      "tag": "Enabled by condition",
+      "pos": [
+        862,
+        252
+      ],
+      "size": [
+        76,
+        76
+      ],
+      "sources": [
+        {
+          "path": "src/rac_ai_scientist/conditions.py",
+          "line": 24,
+          "end_line": 34,
+          "label": "Cumulative N0–R3 mechanism switches"
+        },
+        {
+          "path": "src/rac_ai_scientist/policy.py",
+          "line": 41,
+          "end_line": 179,
+          "label": "Native successor, tag matching and contracts"
+        },
+        {
+          "path": "src/rac_ai_scientist/policy.py",
+          "line": 191,
+          "end_line": 234,
+          "label": "Artifact evidence checks"
+        }
+      ]
+    },
+    {
+      "id": "host_bridge",
+      "type": "backend",
+      "label": "Host Bridge",
+      "sublabel": "Native state ↔ capabilities / artifacts",
+      "tag": "Load one adapter for the selected host",
+      "pos": [
+        522,
+        409
+      ],
+      "size": [
+        76,
+        76
+      ],
+      "sources": [
+        {
+          "path": "src/rac_ai_scientist/bridge.py",
+          "line": 84,
+          "end_line": 111,
+          "label": "Checkpoint and invocation contracts"
+        },
+        {
+          "path": "src/rac_ai_scientist/hosts/registry.py",
+          "line": 8,
+          "end_line": 29,
+          "label": "Host registration and dynamic loading"
+        },
+        {
+          "path": "docs/architecture.md",
+          "line": 31,
+          "end_line": 39,
+          "label": "Translation duties and policy boundary"
+        }
+      ]
+    },
+    {
+      "id": "sharednet_room",
+      "type": "messagebus",
+      "label": "SharedNet Room",
+      "sublabel": "request · result · verification",
+      "tag": "R1–R3 · Inter-agent context",
+      "pos": [
+        862,
+        409
+      ],
+      "size": [
+        76,
+        76
+      ],
+      "sources": [
+        {
+          "path": "src/rac_ai_scientist/bridge.py",
+          "line": 21,
+          "end_line": 82,
+          "label": "Join Room and publish requests and results"
+        },
+        {
+          "path": "src/rac_ai_scientist/sharednet.py",
+          "line": 452,
+          "end_line": 503,
+          "label": "Fold messages into the next role prompt"
+        },
+        {
+          "path": "src/rac_ai_scientist/sharednet.py",
+          "line": 523,
+          "end_line": 541,
+          "label": "Non-blocking verification feedback"
+        }
+      ]
+    },
+    {
+      "id": "ark_adapter",
+      "type": "backend",
+      "label": "ARK",
+      "sublabel": "ArkBridge · native roles and tools",
+      "tag": "Separate Docker environment",
+      "pos": [
+        172,
+        573
+      ],
+      "size": [
+        76,
+        76
+      ],
+      "sources": [
+        {
+          "path": "compose.yaml",
+          "line": 2,
+          "end_line": 20,
+          "label": "ARK image and task mounts"
+        },
+        {
+          "path": "src/rac_ai_scientist/hosts/ark.py",
+          "line": 236,
+          "end_line": 315,
+          "label": "Native state, execution and snapshots"
+        },
+        {
+          "path": "src/rac_ai_scientist/hosts/ark.py",
+          "line": 482,
+          "end_line": 494,
+          "label": "Persist role artifacts"
+        }
+      ]
+    },
+    {
+      "id": "agentlab_adapter",
+      "type": "backend",
+      "label": "Agent Laboratory",
+      "sublabel": "AgentLaboratoryBridge · native phases",
+      "tag": "Separate Docker environment",
+      "pos": [
+        522,
+        573
+      ],
+      "size": [
+        76,
+        76
+      ],
+      "sources": [
+        {
+          "path": "compose.yaml",
+          "line": 22,
+          "end_line": 29,
+          "label": "Separate Agent Laboratory image"
+        },
+        {
+          "path": "src/rac_ai_scientist/hosts/agent_laboratory.py",
+          "line": 740,
+          "end_line": 812,
+          "label": "Invoke native workflow phases"
+        },
+        {
+          "path": "src/rac_ai_scientist/hosts/agent_laboratory.py",
+          "line": 843,
+          "end_line": 880,
+          "label": "Normalize reports and persist products"
+        }
+      ]
+    },
+    {
+      "id": "evo_adapter",
+      "type": "backend",
+      "label": "EvoScientist",
+      "sublabel": "EvoScientistBridge · native capabilities",
+      "tag": "Separate Docker environment",
+      "pos": [
+        862,
+        573
+      ],
+      "size": [
+        76,
+        76
+      ],
+      "sources": [
+        {
+          "path": "compose.yaml",
+          "line": 31,
+          "end_line": 38,
+          "label": "Separate EvoScientist image"
+        },
+        {
+          "path": "src/rac_ai_scientist/hosts/evo_scientist.py",
+          "line": 282,
+          "end_line": 324,
+          "label": "Role invocation, usage and snapshots"
+        },
+        {
+          "path": "src/rac_ai_scientist/hosts/evo_scientist.py",
+          "line": 406,
+          "end_line": 415,
+          "label": "Persist state and reports"
+        }
+      ]
+    },
+    {
+      "id": "workspace_artifacts",
+      "type": "database",
+      "label": "Episode Workspace",
+      "sublabel": "code · outputs · state · report",
+      "tag": "Inputs and artifacts isolated per episode",
+      "pos": [
+        522,
+        731
+      ],
+      "size": [
+        76,
+        76
+      ],
+      "sources": [
+        {
+          "path": "src/rac_ai_scientist/benchmark.py",
+          "line": 177,
+          "end_line": 214,
+          "label": "Fresh workspace with public inputs"
+        },
+        {
+          "path": "src/rac_ai_scientist/hosts/agent_laboratory.py",
+          "line": 843,
+          "end_line": 874,
+          "label": "Persist code, outputs and reports"
+        },
+        {
+          "path": "src/rac_ai_scientist/cli.py",
+          "line": 175,
+          "end_line": 217,
+          "label": "Score the episode workspace"
+        }
+      ]
+    },
+    {
+      "id": "hidden_targets",
+      "type": "security",
+      "label": "Hidden Targets",
+      "sublabel": "target_study · evaluation checklist",
+      "tag": "Visible only to the scorer",
+      "pos": [
+        122,
+        954
+      ],
+      "size": [
+        76,
+        76
+      ],
+      "sources": [
+        {
+          "path": "docker/Dockerfile.scorer",
+          "line": 7,
+          "end_line": 12,
+          "label": "Full benchmark copied into scorer image"
+        },
+        {
+          "path": "docs/architecture.md",
+          "line": 58,
+          "end_line": 65,
+          "label": "Host and evaluator target isolation"
+        },
+        {
+          "path": "src/rac_ai_scientist/benchmark.py",
+          "line": 158,
+          "end_line": 220,
+          "label": "Host inputs exclude target_study"
+        }
+      ]
+    },
+    {
+      "id": "external_scorer",
+      "type": "backend",
+      "label": "Benchmark Scorer",
+      "sublabel": "score · score_workspace()",
+      "tag": "Separate scorer image",
+      "pos": [
+        522,
+        954
+      ],
+      "size": [
+        76,
+        76
+      ],
+      "sources": [
+        {
+          "path": "src/rac_ai_scientist/cli.py",
+          "line": 175,
+          "end_line": 223,
+          "label": "Independent score command"
+        },
+        {
+          "path": "compose.yaml",
+          "line": 40,
+          "end_line": 56,
+          "label": "Separate scorer service"
+        },
+        {
+          "path": "src/rac_ai_scientist/judge.py",
+          "line": 157,
+          "end_line": 181,
+          "label": "Judge adapter and score completeness checks"
+        }
+      ]
+    },
+    {
+      "id": "judge_provider",
+      "type": "external",
+      "label": "Judge Model",
+      "sublabel": "JUDGE_MODEL_NAME · configurable provider",
+      "tag": "Azure adapter when configured",
+      "pos": [
+        862,
+        954
+      ],
+      "size": [
+        76,
+        76
+      ],
+      "sources": [
+        {
+          "path": "compose.yaml",
+          "line": 46,
+          "end_line": 53,
+          "label": "Separate JUDGE configuration"
+        },
+        {
+          "path": "src/rac_ai_scientist/judge.py",
+          "line": 102,
+          "end_line": 154,
+          "label": "Azure chat completion scoring requests"
+        },
+        {
+          "path": "src/rac_ai_scientist/judge.py",
+          "line": 157,
+          "end_line": 178,
+          "label": "Enabled when provider=azure"
+        }
+      ]
+    },
+    {
+      "id": "score_receipts",
+      "type": "database",
+      "label": "Scores & Provenance",
+      "sublabel": "scores/*.json · score.json",
+      "tag": "Failures retain errors and null scores",
+      "pos": [
+        522,
+        1122
+      ],
+      "size": [
+        76,
+        76
+      ],
+      "sources": [
+        {
+          "path": "src/rac_ai_scientist/cli.py",
+          "line": 96,
+          "end_line": 134,
+          "label": "Scoring attempts and current result"
+        },
+        {
+          "path": "src/rac_ai_scientist/cli.py",
+          "line": 137,
+          "end_line": 147,
+          "label": "Scoring failure keeps total_score=null"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "task_to_cli",
+      "from": "visible_task",
+      "to": "experiment_cli"
+    },
+    {
+      "id": "cli_to_native",
+      "from": "experiment_cli",
+      "to": "native_path",
+      "variant": "dashed",
+      "label": "N0",
+      "fromSide": "left",
+      "toSide": "right"
+    },
+    {
+      "id": "cli_to_runner",
+      "from": "experiment_cli",
+      "to": "episode_runner",
+      "label": "R1–R3",
+      "toSide": "top"
+    },
+    {
+      "id": "runner_to_policy",
+      "from": "episode_runner",
+      "to": "shared_policy"
+    },
+    {
+      "id": "runner_to_trace",
+      "from": "episode_runner",
+      "to": "episode_trace",
+      "variant": "dashed",
+      "label": "Record"
+    },
+    {
+      "id": "native_to_bridge",
+      "from": "native_path",
+      "to": "host_bridge",
+      "variant": "dashed",
+      "fromSide": "right",
+      "toSide": "bottom"
+    },
+    {
+      "id": "runner_to_bridge",
+      "from": "episode_runner",
+      "to": "host_bridge"
+    },
+    {
+      "id": "bridge_to_room",
+      "from": "host_bridge",
+      "to": "sharednet_room",
+      "variant": "dashed",
+      "label": "R1–R3 messages"
+    },
+    {
+      "id": "bridge_to_ark",
+      "from": "host_bridge",
+      "to": "ark_adapter"
+    },
+    {
+      "id": "bridge_to_agentlab",
+      "from": "host_bridge",
+      "to": "agentlab_adapter"
+    },
+    {
+      "id": "bridge_to_evo",
+      "from": "host_bridge",
+      "to": "evo_adapter"
+    },
+    {
+      "id": "ark_to_artifacts",
+      "from": "ark_adapter",
+      "to": "workspace_artifacts",
+      "toSide": "left"
+    },
+    {
+      "id": "agentlab_to_artifacts",
+      "from": "agentlab_adapter",
+      "to": "workspace_artifacts",
+      "toSide": "top"
+    },
+    {
+      "id": "evo_to_artifacts",
+      "from": "evo_adapter",
+      "to": "workspace_artifacts",
+      "toSide": "right"
+    },
+    {
+      "id": "artifacts_to_scorer",
+      "from": "workspace_artifacts",
+      "to": "external_scorer",
+      "label": "After execution",
+      "fromSide": "left",
+      "toSide": "top",
+      "via": [
+        [
+          360,
+          769
+        ],
+        [
+          360,
+          904
+        ],
+        [
+          560,
+          904
+        ]
+      ],
+      "labelSegment": 2
+    },
+    {
+      "id": "targets_to_scorer",
+      "from": "hidden_targets",
+      "to": "external_scorer",
+      "label": "Scorer only"
+    },
+    {
+      "id": "scorer_to_judge",
+      "from": "external_scorer",
+      "to": "judge_provider",
+      "variant": "default"
+    },
+    {
+      "id": "scorer_to_receipts",
+      "from": "external_scorer",
+      "to": "score_receipts"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Execution under N0–R3",
+      "items": [
+        "N0: run the complete host-native lifecycle, bypassing the common RAC phase loop.",
+        "R1: add EpisodeRunner and SharedNet communication while retaining the native successor.",
+        "R2: match open issues against capability tags using the shared rule-based policy.",
+        "R3: add scoped work contracts and artifact evidence checks; supported, refuted and inconclusive verdicts become feedback for the next cycle."
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "State, authority and stopping",
+      "items": [
+        "HostBridge translates native state and invokes native roles; SharedPolicy owns the common coordination rules.",
+        "Each episode selects one host; the three upstream dependency stacks run in separate images.",
+        "R3 verdicts retain research state and enter the next role's context. Budgets, hop limits, native terminal states and fatal provider errors govern stopping.",
+        "The three adapters represent alternative integrations, not three systems jointly executing one episode."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Independent benchmark evaluation",
+      "items": [
+        "Hosts receive only the public task, data/ and related_work/. target_study is neither copied nor mounted into their environment.",
+        "The independent score command invokes ResearchClawBench and uses the configured external judge.",
+        "R3's in-loop verifier and the final benchmark judge have separate responsibilities.",
+        "scores/ preserves each scoring attempt and its provenance. score.json references the current attempt; scoring infrastructure failures retain null scores and errors."
+      ]
+    }
+  ]
+}
